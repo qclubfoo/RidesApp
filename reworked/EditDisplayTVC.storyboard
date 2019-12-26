@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f0z-B4-DG3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f0z-B4-DG3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -198,56 +198,55 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usT-JA-J54">
-                                                    <rect key="frame" x="162" y="5.5" width="90" height="33"/>
-                                                    <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="M9H-wz-Yin">
+                                                    <rect key="frame" x="10.5" y="5.5" width="393" height="33"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdD-2X-LYS">
+                                                            <rect key="frame" x="0.0" y="0.0" width="124.5" height="33"/>
+                                                            <color key="backgroundColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <state key="normal" title="Decrease">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="decreaseAction:" destination="f0z-B4-DG3" eventType="touchUpInside" id="6fX-vm-OxJ"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usT-JA-J54">
+                                                            <rect key="frame" x="134.5" y="0.0" width="124" height="33"/>
+                                                            <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <state key="normal" title="Cancel">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="cancelAction:" destination="f0z-B4-DG3" eventType="touchUpInside" id="bD3-Fi-rdY"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFl-Vj-0zC">
+                                                            <rect key="frame" x="268.5" y="0.0" width="124.5" height="33"/>
+                                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <state key="normal" title="Increase">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="increaseAction:" destination="f0z-B4-DG3" eventType="touchUpInside" id="uMw-jq-j01"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="90" id="ShQ-g4-Jvk"/>
+                                                        <constraint firstItem="usT-JA-J54" firstAttribute="width" secondItem="qdD-2X-LYS" secondAttribute="width" id="2Va-v6-Dnd"/>
+                                                        <constraint firstItem="hFl-Vj-0zC" firstAttribute="height" secondItem="qdD-2X-LYS" secondAttribute="height" id="3a4-QS-mmO"/>
+                                                        <constraint firstItem="hFl-Vj-0zC" firstAttribute="width" secondItem="qdD-2X-LYS" secondAttribute="width" id="5dN-gx-9SI"/>
+                                                        <constraint firstItem="usT-JA-J54" firstAttribute="height" secondItem="qdD-2X-LYS" secondAttribute="height" id="KR4-Mt-wKG"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <state key="normal" title="Cancel">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="cancelAction:" destination="f0z-B4-DG3" eventType="touchUpInside" id="bD3-Fi-rdY"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdD-2X-LYS">
-                                                    <rect key="frame" x="42" y="5.5" width="90" height="33"/>
-                                                    <color key="backgroundColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <state key="normal" title="Decrease">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="decreaseAction:" destination="f0z-B4-DG3" eventType="touchUpInside" id="6fX-vm-OxJ"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFl-Vj-0zC">
-                                                    <rect key="frame" x="282" y="5.5" width="90" height="33"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <state key="normal" title="Increase">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="increaseAction:" destination="f0z-B4-DG3" eventType="touchUpInside" id="uMw-jq-j01"/>
-                                                    </connections>
-                                                </button>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="hFl-Vj-0zC" firstAttribute="centerY" secondItem="mZi-Ri-Qez" secondAttribute="centerY" id="2tG-uU-Bxs"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hFl-Vj-0zC" secondAttribute="trailing" constant="10" id="3Gy-uP-jd7"/>
-                                                <constraint firstItem="usT-JA-J54" firstAttribute="width" secondItem="qdD-2X-LYS" secondAttribute="width" id="3Tg-g1-bmS"/>
-                                                <constraint firstItem="qdD-2X-LYS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mZi-Ri-Qez" secondAttribute="leading" constant="10" id="BaH-Rg-Bdf"/>
-                                                <constraint firstItem="hFl-Vj-0zC" firstAttribute="leading" secondItem="usT-JA-J54" secondAttribute="trailing" priority="750" constant="30" id="Cic-K8-Vdr"/>
-                                                <constraint firstItem="hFl-Vj-0zC" firstAttribute="height" secondItem="qdD-2X-LYS" secondAttribute="height" id="Q1u-a2-9GK"/>
-                                                <constraint firstItem="hFl-Vj-0zC" firstAttribute="width" secondItem="qdD-2X-LYS" secondAttribute="width" id="cAh-aC-AB1"/>
-                                                <constraint firstItem="usT-JA-J54" firstAttribute="centerY" secondItem="mZi-Ri-Qez" secondAttribute="centerY" id="cft-Os-l5E"/>
-                                                <constraint firstItem="usT-JA-J54" firstAttribute="leading" secondItem="qdD-2X-LYS" secondAttribute="trailing" priority="750" constant="30" id="lVE-m7-x21"/>
-                                                <constraint firstItem="qdD-2X-LYS" firstAttribute="centerY" secondItem="mZi-Ri-Qez" secondAttribute="centerY" id="spN-XY-rw0"/>
-                                                <constraint firstItem="usT-JA-J54" firstAttribute="centerX" secondItem="mZi-Ri-Qez" secondAttribute="centerX" id="wCt-RG-3IB"/>
-                                                <constraint firstItem="usT-JA-J54" firstAttribute="height" secondItem="qdD-2X-LYS" secondAttribute="height" id="zmo-n4-OlN"/>
+                                                <constraint firstItem="M9H-wz-Yin" firstAttribute="centerY" secondItem="mZi-Ri-Qez" secondAttribute="centerY" id="Odj-nm-1PA"/>
+                                                <constraint firstItem="usT-JA-J54" firstAttribute="width" secondItem="mZi-Ri-Qez" secondAttribute="width" multiplier="0.3" id="fnT-pP-JV6"/>
+                                                <constraint firstItem="M9H-wz-Yin" firstAttribute="centerX" secondItem="mZi-Ri-Qez" secondAttribute="centerX" id="g7b-ah-omU"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
