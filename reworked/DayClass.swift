@@ -9,6 +9,7 @@
 import Foundation
 
 class DayClass: Decodable {
+    
     var date: String = ""
     var metroRide: Int = 0
     var tatRide: Int = 0

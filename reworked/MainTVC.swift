@@ -45,7 +45,7 @@ class MainTVC: UITableViewController, CustomCellClassDelegate, AddDisplayTVCDele
         return cell
     }
 
-    // метод вызывается в AddDisplayTVC, в него передаются данные для заполнения массива с данными. Сначала создается новый элемент в массиве, затем его элементам присваиваются значения. После вызывается метод для вставки ячейки с этими данными. При попытке добавить значение с такой же датой, поездки добавятся к существующей ячейке.
+    // метод вызывается в AddDisplayTVC, в него передаются данные для заполнения массива с данными. Сначала создается новый элемент в массиве, затем его элементам присваиваются значения. После вызывается метод для вставки ячейки с этими данными. При попытке добавить значение с такой же датой, поездки добавятся к существующей ячейке. Добавлен поиск ячейки с такой же датой, при нахождении такой, пополняются ее значения вместо создания новой.
     func addDataInArray(date: String, metroRides: Int, tatRides: Int) {
         if metroRides != 0 || tatRides != 0 {
             let index = daysArray.count
@@ -81,7 +81,7 @@ class MainTVC: UITableViewController, CustomCellClassDelegate, AddDisplayTVCDele
         customCell.dateLabel.text = item.date
         customCell.metroNumLabel.text = String(item.metroRide)
         customCell.tatNumLabel.text = String(item.tatRide)
-        customCell.totalSpentLabel.text = String(item.metroCost * item.metroRide +                                            item.tatCost * item.tatRide) + " rub."
+        customCell.totalSpentLabel.text = String(item.metroCost * item.metroRide + item.tatCost * item.tatRide) + " rub."
     }
 
     // метод создает ячейку с соответствующим индексом и добавляет ее к TableView
@@ -90,21 +90,23 @@ class MainTVC: UITableViewController, CustomCellClassDelegate, AddDisplayTVCDele
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
     
+    // метод получает данные по приложенной ссылке, парсит их и возвращает массив данных.
     func getJSON() ->  [DayClass] {
-        
-        if let path = Bundle.main.path(forResource: "DaysArray", ofType: "json") {
+        let urlString = "https://firebasestorage.googleapis.com/v0/b/ridescount.appspot.com/o/DaysArray.json?alt=media&token=ce1d0d03-f00f-47cb-a9f4-602932f77262"
+        let url = URL(string: urlString)!
             do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+                let data = try Data(contentsOf: url, options: .alwaysMapped)
                 let decoder = JSONDecoder()
                 let modelArray = try decoder.decode([DayClass].self, from: data)
                 return modelArray
             } catch let parsingError {
                 print("Error", parsingError)
-            }
         }
         return []
     }
+    
 
+    // делегатская функция класса CustomCellClass. Через нее проихсодит обработка кнопки находящейся в ячейке (ячейка подается как параметр в функцию), далее из нее извлекается индекс ячейки в которой нужно будет изменить данные.
     func didTapButton(cell: CustomCellClass) {
         if let editDistplayTVC = EditDisplayTVC.storyboardInstance() {
             guard let i =  tableView.indexPath(for: cell)?.row else { return }

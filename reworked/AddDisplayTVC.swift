@@ -29,6 +29,7 @@ class AddDisplayTVC: UITableViewController {
         addButtonOutlet.layer.cornerRadius = 10
     }
     
+    // назначет firstResponder текстфилду
     override func viewWillAppear(_ animated: Bool) {
         metroOutlet.becomeFirstResponder()
     }
@@ -45,11 +46,7 @@ class AddDisplayTVC: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    static func storyboardInstance() -> AddDisplayTVC? {
-        let storyboard = UIStoryboard(name: "AddDisplayTVC", bundle: nil)
-        return storyboard.instantiateInitialViewController() as? AddDisplayTVC
-    }
-    
+    // метод, собирающий данные из TextField ов, и возвращающий их кортежем.
     func collectDataFromOutlets() -> (dateText: String, metroRides: Int, tatRides: Int) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -57,6 +54,12 @@ class AddDisplayTVC: UITableViewController {
         let metroRides = Int(metroOutlet.text ?? "0") ?? 0
         let tatRides = Int(tatOutlet.text ?? "0") ?? 0
         return (dateText, metroRides, tatRides)
+    }
+    
+    // метод для перехода в TableViewController: AddDisplayTVC, возвращающий AddDisplayTVC
+    static func storyboardInstance() -> AddDisplayTVC? {
+        let storyboard = UIStoryboard(name: "AddDisplayTVC", bundle: nil)
+        return storyboard.instantiateInitialViewController() as? AddDisplayTVC
     }
     
 }
