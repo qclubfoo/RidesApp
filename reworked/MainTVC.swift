@@ -9,8 +9,8 @@
 import UIKit
 import Foundation
 
-class MainTVC: UITableViewController, CustomCellClassDelegate, AddDisplayTVCDelegate {
-
+class MainTVC: UITableViewController, CustomCellClassDelegate, AddDisplayTVCDelegate, EditDisplayTVCDelegate {
+ 
     var daysArray = [DayClass]()
     
     override func viewDidLoad() {
@@ -22,7 +22,7 @@ class MainTVC: UITableViewController, CustomCellClassDelegate, AddDisplayTVCDele
     @IBAction func addNewCell(_ sender: Any) {
         if let addDisplayTVC = AddDisplayTVC.storyboardInstance() {
             present(addDisplayTVC, animated: true, completion: nil)
-            addDisplayTVC.mainTVC = self
+            addDisplayTVC.mainTVCdelegate = self
         }
     }
     @IBAction func editCell(_ sender: Any) {
@@ -49,6 +49,8 @@ class MainTVC: UITableViewController, CustomCellClassDelegate, AddDisplayTVCDele
         daysArray.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
+    
+    
 
     // метод вызывается в AddDisplayTVC, в него передаются данные для заполнения массива с данными. Сначала создается новый элемент в массиве, затем его элементам присваиваются значения. После вызывается метод для вставки ячейки с этими данными. При попытке добавить значение с такой же датой, поездки добавятся к существующей ячейке. Добавлен поиск ячейки с такой же датой, при нахождении такой, пополняются ее значения вместо создания новой.
     func addDataInArray(date: String, metroRides: Int, tatRides: Int) {
@@ -116,9 +118,26 @@ class MainTVC: UITableViewController, CustomCellClassDelegate, AddDisplayTVCDele
         if let editDistplayTVC = EditDisplayTVC.storyboardInstance() {
             guard let i =  tableView.indexPath(for: cell)?.row else { return }
             editDistplayTVC.currentDay = daysArray[i]
-            editDistplayTVC.mainTVC = self
+            editDistplayTVC.mainTVCdelegate = self
             present(editDistplayTVC, animated: true, completion: nil)
         }
     }
     
+    func increaseFunction(_ metro: Int, _ tat: Int, _ currentDay: DayClass) {
+        currentDay.metroRide += metro
+        currentDay.tatRide += tat
+    }
+    
+    func decreaseFunction(_ metro: Int, _ tat: Int, _ currentDay: DayClass) {
+        if currentDay.metroRide - metro >= 0 {
+            currentDay.metroRide -= metro
+        }
+        if currentDay.tatRide - tat >= 0 {
+            currentDay.tatRide -= tat
+        }
+    }
+    
+    func updateValues() {
+        tableView.reloadData()
+    }
 }

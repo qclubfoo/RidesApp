@@ -8,10 +8,17 @@
 
 import UIKit
 
+protocol EditDisplayTVCDelegate: class {
+    func increaseFunction(_ metro: Int, _ tat: Int, _ currentDay: DayClass)
+    func decreaseFunction(_ metro: Int, _ tat: Int, _ currentDay: DayClass)
+    func updateValues()
+}
+
 class EditDisplayTVC: UITableViewController {
     
-    weak var currentDay: DayClass?
-    weak var mainTVC: MainTVC?
+    var currentDay: DayClass?
+    weak var mainTVCdelegate: EditDisplayTVCDelegate?
+    
     @IBOutlet weak var dateOutlet: UILabel!
     @IBOutlet weak var metroOutlet: UILabel!
     @IBOutlet weak var tatOutlet: UILabel!
@@ -36,26 +43,20 @@ class EditDisplayTVC: UITableViewController {
     
     // Обработка нажатия кнопки Decrease, уменьшающей текущие значения на значения из TextField ов после чего закрывается EditDisplayTVC и обновляются данные в MainTVC. Если введенные значения уменьшат текущее значение до отрицательного числа, то значение остается прежним.
     @IBAction func decreaseAction(_ sender: Any) {
-        guard let guardedMainTVC = mainTVC else { return }
-        let metro = Int(metroTFOutlet.text ?? "0") ?? 0
-        let tat = Int(tatTFOutlet.text ?? "0") ?? 0
-        if currentDay!.metroRide - metro >= 0 {
-            currentDay?.metroRide -= metro
-        }
-        if currentDay!.tatRide - tat >= 0 {
-            currentDay!.tatRide -= tat
-        }
-        dismiss(animated: true, completion: nil)
-        guardedMainTVC.tableView.reloadData()
+        guard let currentDay = currentDay else { return }
+        guard let metro = Int(metroTFOutlet.text ?? "0") else { return }
+        guard let tat = Int(tatTFOutlet.text ?? "0") else { return }
+        mainTVCdelegate?.decreaseFunction(metro, tat, currentDay)
+        dismiss(animated: true) {self.mainTVCdelegate?.updateValues()}
+        
     }
     // Обработка нажатия кнопки Increase, увеличивающей текущие значения на значения из TextField ов после чего закрывается EditDisplayTVC и обновляются данные в MainTVC
     @IBAction func increaseAction(_ sender: Any) {
-        guard let guardedMainTVC = mainTVC else { return }
-        let metro = Int(metroTFOutlet.text ?? "0") ?? 0
-        let tat = Int(tatTFOutlet.text ?? "0") ?? 0
-        currentDay?.metroRide += metro
-        currentDay?.tatRide += tat
-        dismiss(animated: true) { guardedMainTVC.tableView.reloadData() }
+        guard let currentDay = currentDay else { return }
+        guard let metro = Int(metroTFOutlet.text ?? "0") else { return }
+        guard let tat = Int(tatTFOutlet.text ?? "0") else { return }
+        mainTVCdelegate?.increaseFunction(metro, tat, currentDay)
+        dismiss(animated: true) {self.mainTVCdelegate?.updateValues()}
     }
     
     // Обработка нажатия кнопки Cancel, просто закрывает EditDisplayTVC и возвращает в MainTVC
@@ -65,7 +66,7 @@ class EditDisplayTVC: UITableViewController {
     
 // метод для перехода в TableViewController: EditDisplayTVC, возвращающий EditDisplayTVC
     static func storyboardInstance() -> EditDisplayTVC? {
-        let storyboard = UIStoryboard(name: "EditDisplayTVC", bundle: nil)
+        let storyboard = UIStoryboard(name: String(describing: self), bundle: nil)
         return storyboard.instantiateInitialViewController() as? EditDisplayTVC
     }
 }

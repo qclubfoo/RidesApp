@@ -14,7 +14,7 @@ protocol AddDisplayTVCDelegate: class {
 
 class AddDisplayTVC: UITableViewController {
     
-    weak var mainTVC: MainTVC?
+    weak var mainTVCdelegate: AddDisplayTVCDelegate?
     
     @IBOutlet weak var cancelButtonOutlet: UIButton!
     @IBOutlet weak var addButtonOutlet: UIButton!
@@ -37,7 +37,7 @@ class AddDisplayTVC: UITableViewController {
     // при нажатии на кнопку добавления значения из аутлетов попадают в переменную в виде кортежа. Вызывается метод добавления данных в массив, хранящий поездки, передавая параметры для заполнения. Контроллер скрывается с помощью dismiss.
     @IBAction func addButton(_ sender: Any) {
         let collectedData = collectDataFromOutlets()
-        mainTVC?.addDataInArray(date: collectedData.dateText, metroRides: collectedData.metroRides, tatRides: collectedData.tatRides)
+        mainTVCdelegate?.addDataInArray(date: collectedData.dateText, metroRides: collectedData.metroRides, tatRides: collectedData.tatRides)
         dismiss(animated: true, completion: nil)
     }
 
@@ -58,7 +58,7 @@ class AddDisplayTVC: UITableViewController {
     
     // метод для перехода в TableViewController: AddDisplayTVC, возвращающий AddDisplayTVC
     static func storyboardInstance() -> AddDisplayTVC? {
-        let storyboard = UIStoryboard(name: "AddDisplayTVC", bundle: nil)
+        let storyboard = UIStoryboard(name: String(describing: self), bundle: nil)
         return storyboard.instantiateInitialViewController() as? AddDisplayTVC
     }
     

@@ -129,6 +129,7 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="ycf-MI-Q3Q" id="VYK-ao-fsK"/>
                             <outlet property="delegate" destination="ycf-MI-Q3Q" id="lZY-hQ-gM5"/>
