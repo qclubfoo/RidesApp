@@ -71,7 +71,7 @@ class MainTVC: UITableViewController, CustomCellClassDelegate, AddDisplayTVCDele
     }
 
     // метод вызывается в AddDisplayTVC, в него передаются данные для заполнения массива с данными. Сначала создается новый элемент в массиве, затем его элементам присваиваются значения. После вызывается метод для вставки ячейки с этими данными. При попытке добавить значение с такой же датой, поездки добавятся к существующей ячейке. Добавлен поиск ячейки с такой же датой, при нахождении такой, пополняются ее значения вместо создания новой.
-    func addDataInArray(data: (date: String, metroRides: Int, tatRides: Int)) {
+    func addDataInArray(data: (dateAsDate: Date, date: String, metroRides: Int, tatRides: Int)) {
 //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
 //        let managedContext = appDelegate.persistentContainer.viewContext
         let managedContext = CoreDataService.shared.managedContext
@@ -83,6 +83,7 @@ class MainTVC: UITableViewController, CustomCellClassDelegate, AddDisplayTVCDele
                 if let entity = CoreDataService.shared.getEntity(byName: "DayClass"){
                     let day = DayClass(insertInto: managedContext, entity: entity, data: data)
                     daysArray.append(day)
+                    daysArray.sort(by: {$0.dateAsDate > $1.dateAsDate})
                 }
         }
         saveCoreData(inContext: managedContext)

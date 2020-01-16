@@ -16,11 +16,11 @@ extension DayClass {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<DayClass> {
         return NSFetchRequest<DayClass>(entityName: "DayClass")
     }
-
+    @NSManaged public var dateAsDate: Date
     @NSManaged public var date: String
     @NSManaged public var metroRide: Int
     @NSManaged public var tatRide: Int
     @NSManaged public var metroCost: Int
     @NSManaged public var tatCost: Int
-
+    
 }

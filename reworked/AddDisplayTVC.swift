@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AddDisplayTVCDelegate: class {
-    func addDataInArray(data: (date: String, metroRides: Int, tatRides: Int))
+    func addDataInArray(data: (dateAsDate: Date, date: String, metroRides: Int, tatRides: Int))
     func updateValues()
 }
 
@@ -48,13 +48,14 @@ class AddDisplayTVC: UITableViewController {
     }
     
     // метод, собирающий данные из TextField ов, и возвращающий их кортежем.
-    func collectDataFromOutlets() -> (date: String, metroRides: Int, tatRides: Int) {
+    func collectDataFromOutlets() -> (dateAsDate: Date, date: String, metroRides: Int, tatRides: Int) {
+        let dateAsDate = datePickerOutlet.date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
-        let dateText = dateFormatter.string(from: datePickerOutlet.date)
+        let dateText = dateFormatter.string(from: dateAsDate)
         let metroRides = Int(metroOutlet.text ?? "0") ?? 0
         let tatRides = Int(tatOutlet.text ?? "0") ?? 0
-        return (dateText, metroRides, tatRides)
+        return (dateAsDate, dateText, metroRides, tatRides)
     }
     
     // метод для перехода в TableViewController: AddDisplayTVC, возвращающий AddDisplayTVC

@@ -13,8 +13,9 @@ import CoreData
 @objc(DayClass)
 public class DayClass: NSManagedObject {
     
-    convenience init(insertInto context: NSManagedObjectContext, entity: NSEntityDescription, data: (date: String, metroRides: Int, tatRides: Int)) {
+    convenience init(insertInto context: NSManagedObjectContext, entity: NSEntityDescription, data: (dateAsDate: Date, date: String, metroRides: Int, tatRides: Int)) {
         self.init(entity: entity, insertInto: context)
+        dateAsDate = data.dateAsDate
         date = data.date
         metroRide = data.metroRides
         tatRide = data.tatRides

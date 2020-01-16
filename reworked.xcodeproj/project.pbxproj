@@ -14,7 +14,6 @@
 		00AA1BA223B2A71A003BCEBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00AA1BA023B2A71A003BCEBF /* LaunchScreen.storyboard */; };
 		00AA1BAA23B2A752003BCEBF /* AddDisplayTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00AA1BA923B2A752003BCEBF /* AddDisplayTVC.storyboard */; };
 		00AA1BAC23B2A77E003BCEBF /* EditDisplayTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00AA1BAB23B2A77E003BCEBF /* EditDisplayTVC.storyboard */; };
-		00AA1BAE23B2A799003BCEBF /* DayClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA1BAD23B2A799003BCEBF /* DayClass.swift */; };
 		00AA1BB223B2AAC5003BCEBF /* CustomCellClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA1BB123B2AAC5003BCEBF /* CustomCellClass.swift */; };
 		00AA1BB423B2AB99003BCEBF /* MainTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA1BB323B2AB99003BCEBF /* MainTVC.swift */; };
 		00AA1BB623B2ABC2003BCEBF /* AddDisplayTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA1BB523B2ABC2003BCEBF /* AddDisplayTVC.swift */; };
@@ -35,7 +34,6 @@
 		00AA1BA323B2A71A003BCEBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00AA1BA923B2A752003BCEBF /* AddDisplayTVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddDisplayTVC.storyboard; sourceTree = "<group>"; };
 		00AA1BAB23B2A77E003BCEBF /* EditDisplayTVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditDisplayTVC.storyboard; sourceTree = "<group>"; };
-		00AA1BAD23B2A799003BCEBF /* DayClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayClass.swift; sourceTree = "<group>"; };
 		00AA1BB123B2AAC5003BCEBF /* CustomCellClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellClass.swift; sourceTree = "<group>"; };
 		00AA1BB323B2AB99003BCEBF /* MainTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTVC.swift; sourceTree = "<group>"; };
 		00AA1BB523B2ABC2003BCEBF /* AddDisplayTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDisplayTVC.swift; sourceTree = "<group>"; };
@@ -91,7 +89,6 @@
 				00AA1BAB23B2A77E003BCEBF /* EditDisplayTVC.storyboard */,
 				00AA1BB723B2ABE5003BCEBF /* EditDisplayTVC.swift */,
 				00AA1BB123B2AAC5003BCEBF /* CustomCellClass.swift */,
-				00AA1BAD23B2A799003BCEBF /* DayClass.swift */,
 				8415FEF223CF35B0004A8CBE /* CoreData.xcdatamodeld */,
 			);
 			path = reworked;
@@ -172,7 +169,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				00AA1BB823B2ABE5003BCEBF /* EditDisplayTVC.swift in Sources */,
-				00AA1BAE23B2A799003BCEBF /* DayClass.swift in Sources */,
 				00AA1BB623B2ABC2003BCEBF /* AddDisplayTVC.swift in Sources */,
 				8415FEF723CF3646004A8CBE /* DayClass+CoreDataClass.swift in Sources */,
 				00AA1B9623B2A719003BCEBF /* AppDelegate.swift in Sources */,
