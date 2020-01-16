@@ -8,12 +8,12 @@
 
 import Foundation
 
-class DayClass: Decodable {
-    
-    var date: String = ""
-    var metroRide: Int = 0
-    var tatRide: Int = 0
-
-    let metroCost: Int = 38
-    let tatCost: Int = 38
-}
+//class DayClass: Decodable {
+//    
+//    var date: String = ""
+//    var metroRide: Int = 0
+//    var tatRide: Int = 0
+//
+//    let metroCost: Int = 38
+//    let tatCost: Int = 38
+//}

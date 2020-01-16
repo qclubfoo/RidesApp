@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import CoreData
 
 class MainTVC: UITableViewController, CustomCellClassDelegate, AddDisplayTVCDelegate, EditDisplayTVCDelegate {
  
@@ -15,7 +16,12 @@ class MainTVC: UITableViewController, CustomCellClassDelegate, AddDisplayTVCDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        daysArray = getJSON()
+//        daysArray = getJSON()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+      super.viewWillAppear(animated)
+        daysArray = CoreDataService.shared.daysFetchRequest(entityName: "DayClass")
     }
     
     // Action кнопки для создания новой ячейки. Сначала вызывается метод storyboardInstance() для получения контроллера, к которому будет осуществлен переход. Затем этот контроллер презентится на экран. После чего сетится ссылка на контроллер вызвавший это переход внутри вызываемого контроллера.
@@ -46,38 +52,40 @@ class MainTVC: UITableViewController, CustomCellClassDelegate, AddDisplayTVCDele
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+//        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = CoreDataService.shared.managedContext
+        let day = daysArray[indexPath.row]
+        managedContext.delete(day)
         daysArray.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
+        saveCoreData(inContext: managedContext)
     }
     
-    
+    func saveCoreData(inContext context: NSManagedObjectContext) {
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("CCould not save. \(error), \(error.userInfo)")
+            }
+    }
 
     // метод вызывается в AddDisplayTVC, в него передаются данные для заполнения массива с данными. Сначала создается новый элемент в массиве, затем его элементам присваиваются значения. После вызывается метод для вставки ячейки с этими данными. При попытке добавить значение с такой же датой, поездки добавятся к существующей ячейке. Добавлен поиск ячейки с такой же датой, при нахождении такой, пополняются ее значения вместо создания новой.
-    func addDataInArray(date: String, metroRides: Int, tatRides: Int) {
-        if metroRides != 0 || tatRides != 0 {
-            let index = daysArray.count
-            if index == 0 {
-                daysArray.append(DayClass())
-                daysArray[index].date = date
-                daysArray[index].tatRide = tatRides
-                daysArray[index].metroRide = metroRides
-                addCellWhithData(index: index)
-            }
-            for i in 0 ..< index {
-                if daysArray[i].date == date {
-                    daysArray[i].tatRide += tatRides
-                    daysArray[i].metroRide += metroRides
-                    tableView.reloadData()
-                    break
+    func addDataInArray(data: (date: String, metroRides: Int, tatRides: Int)) {
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+//        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = CoreDataService.shared.managedContext
+        if (data.metroRides != 0 || data.tatRides != 0) {
+            if let index = daysArray.firstIndex(where: {$0.date == data.date}){
+                daysArray[index].tatRide += data.tatRides
+                daysArray[index].metroRide += data.metroRides
+        } else {
+                if let entity = CoreDataService.shared.getEntity(byName: "DayClass"){
+                    let day = DayClass(insertInto: managedContext, entity: entity, data: data)
+                    daysArray.append(day)
                 }
-                else if i == index - 1 {
-                    daysArray.append(DayClass())
-                    daysArray[index].date = date
-                    daysArray[index].tatRide = tatRides
-                    daysArray[index].metroRide = metroRides
-                    addCellWhithData(index: index)
-                }
-            }
+        }
+        saveCoreData(inContext: managedContext)
         }
     }
     
@@ -98,19 +106,19 @@ class MainTVC: UITableViewController, CustomCellClassDelegate, AddDisplayTVCDele
     }
     
     // метод получает данные по приложенной ссылке, парсит их и возвращает массив данных.
-    func getJSON() ->  [DayClass] {
-        let urlString = "https://firebasestorage.googleapis.com/v0/b/ridescount.appspot.com/o/DaysArray.json?alt=media&token=ce1d0d03-f00f-47cb-a9f4-602932f77262"
-        let url = URL(string: urlString)!
-            do {
-                let data = try Data(contentsOf: url, options: .alwaysMapped)
-                let decoder = JSONDecoder()
-                let modelArray = try decoder.decode([DayClass].self, from: data)
-                return modelArray
-            } catch let parsingError {
-                print("Error", parsingError)
-        }
-        return []
-    }
+//    func getJSON() ->  [DayClass] {
+//        let urlString = "https://firebasestorage.googleapis.com/v0/b/ridescount.appspot.com/o/DaysArray.json?alt=media&token=ce1d0d03-f00f-47cb-a9f4-602932f77262"
+//        let url = URL(string: urlString)!
+//            do {
+//                let data = try Data(contentsOf: url, options: .alwaysMapped)
+//                let decoder = JSONDecoder()
+//                let modelArray = try decoder.decode([DayClass].self, from: data)
+//                return modelArray
+//            } catch let parsingError {
+//                print("Error", parsingError)
+//        }
+//        return []
+//    }
     
 
     // делегатская функция класса CustomCellClass. Через нее проихсодит обработка кнопки находящейся в ячейке (ячейка подается как параметр в функцию), далее из нее извлекается индекс ячейки в которой нужно будет изменить данные.

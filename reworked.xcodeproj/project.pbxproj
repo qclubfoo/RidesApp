@@ -19,6 +19,10 @@
 		00AA1BB423B2AB99003BCEBF /* MainTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA1BB323B2AB99003BCEBF /* MainTVC.swift */; };
 		00AA1BB623B2ABC2003BCEBF /* AddDisplayTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA1BB523B2ABC2003BCEBF /* AddDisplayTVC.swift */; };
 		00AA1BB823B2ABE5003BCEBF /* EditDisplayTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AA1BB723B2ABE5003BCEBF /* EditDisplayTVC.swift */; };
+		8415FEF723CF3646004A8CBE /* DayClass+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8415FEF523CF3646004A8CBE /* DayClass+CoreDataClass.swift */; };
+		8415FEF823CF3646004A8CBE /* DayClass+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8415FEF623CF3646004A8CBE /* DayClass+CoreDataProperties.swift */; };
+		8415FEF923CF3F61004A8CBE /* CoreData.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 8415FEF223CF35B0004A8CBE /* CoreData.xcdatamodeld */; };
+		8415FEFB23D05588004A8CBE /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8415FEFA23D05588004A8CBE /* CoreDataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		00AA1BB323B2AB99003BCEBF /* MainTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTVC.swift; sourceTree = "<group>"; };
 		00AA1BB523B2ABC2003BCEBF /* AddDisplayTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDisplayTVC.swift; sourceTree = "<group>"; };
 		00AA1BB723B2ABE5003BCEBF /* EditDisplayTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDisplayTVC.swift; sourceTree = "<group>"; };
+		8415FEF323CF35B0004A8CBE /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
+		8415FEF523CF3646004A8CBE /* DayClass+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DayClass+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8415FEF623CF3646004A8CBE /* DayClass+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DayClass+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8415FEFA23D05588004A8CBE /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +76,8 @@
 		00AA1B9423B2A719003BCEBF /* reworked */ = {
 			isa = PBXGroup;
 			children = (
+				8415FEF523CF3646004A8CBE /* DayClass+CoreDataClass.swift */,
+				8415FEF623CF3646004A8CBE /* DayClass+CoreDataProperties.swift */,
 				00AA1B9E23B2A71A003BCEBF /* Assets.xcassets */,
 				00AA1BA323B2A71A003BCEBF /* Info.plist */,
 				00AA1B9523B2A719003BCEBF /* AppDelegate.swift */,
@@ -77,10 +87,12 @@
 				00AA1BB323B2AB99003BCEBF /* MainTVC.swift */,
 				00AA1BA923B2A752003BCEBF /* AddDisplayTVC.storyboard */,
 				00AA1BB523B2ABC2003BCEBF /* AddDisplayTVC.swift */,
+				8415FEFA23D05588004A8CBE /* CoreDataService.swift */,
 				00AA1BAB23B2A77E003BCEBF /* EditDisplayTVC.storyboard */,
 				00AA1BB723B2ABE5003BCEBF /* EditDisplayTVC.swift */,
 				00AA1BB123B2AAC5003BCEBF /* CustomCellClass.swift */,
 				00AA1BAD23B2A799003BCEBF /* DayClass.swift */,
+				8415FEF223CF35B0004A8CBE /* CoreData.xcdatamodeld */,
 			);
 			path = reworked;
 			sourceTree = "<group>";
@@ -143,6 +155,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8415FEF923CF3F61004A8CBE /* CoreData.xcdatamodeld in Resources */,
 				00AA1BA223B2A71A003BCEBF /* LaunchScreen.storyboard in Resources */,
 				00AA1B9F23B2A71A003BCEBF /* Assets.xcassets in Resources */,
 				00AA1B9D23B2A719003BCEBF /* Main.storyboard in Resources */,
@@ -161,8 +174,11 @@
 				00AA1BB823B2ABE5003BCEBF /* EditDisplayTVC.swift in Sources */,
 				00AA1BAE23B2A799003BCEBF /* DayClass.swift in Sources */,
 				00AA1BB623B2ABC2003BCEBF /* AddDisplayTVC.swift in Sources */,
+				8415FEF723CF3646004A8CBE /* DayClass+CoreDataClass.swift in Sources */,
 				00AA1B9623B2A719003BCEBF /* AppDelegate.swift in Sources */,
+				8415FEFB23D05588004A8CBE /* CoreDataService.swift in Sources */,
 				00AA1B9823B2A719003BCEBF /* SceneDelegate.swift in Sources */,
+				8415FEF823CF3646004A8CBE /* DayClass+CoreDataProperties.swift in Sources */,
 				00AA1BB223B2AAC5003BCEBF /* CustomCellClass.swift in Sources */,
 				00AA1BB423B2AB99003BCEBF /* MainTVC.swift in Sources */,
 			);
@@ -310,18 +326,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6PM6W9L3YQ;
+				DEVELOPMENT_TEAM = 29U4N24KXN;
 				INFOPLIST_FILE = reworked/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = DP2012198912121212;
+				PRODUCT_BUNDLE_IDENTIFIER = "-424114241";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -331,18 +347,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6PM6W9L3YQ;
+				DEVELOPMENT_TEAM = 29U4N24KXN;
 				INFOPLIST_FILE = reworked/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = DP2012198912121212;
+				PRODUCT_BUNDLE_IDENTIFIER = "-424114241";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -368,6 +384,19 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8415FEF223CF35B0004A8CBE /* CoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8415FEF323CF35B0004A8CBE /* CoreData.xcdatamodel */,
+			);
+			currentVersion = 8415FEF323CF35B0004A8CBE /* CoreData.xcdatamodel */;
+			path = CoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 00AA1B8A23B2A719003BCEBF /* Project object */;
 }

@@ -44,19 +44,25 @@ class EditDisplayTVC: UITableViewController {
     // Обработка нажатия кнопки Decrease, уменьшающей текущие значения на значения из TextField ов после чего закрывается EditDisplayTVC и обновляются данные в MainTVC. Если введенные значения уменьшат текущее значение до отрицательного числа, то значение остается прежним.
     @IBAction func decreaseAction(_ sender: Any) {
         guard let currentDay = currentDay else { return }
-        guard let metro = Int(metroTFOutlet.text ?? "0") else { return }
-        guard let tat = Int(tatTFOutlet.text ?? "0") else { return }
+        let metro = Int(metroTFOutlet.text ?? "0") ?? 0
+        let tat = Int(tatTFOutlet.text ?? "0") ?? 0
         mainTVCdelegate?.decreaseFunction(metro, tat, currentDay)
-        dismiss(animated: true) {self.mainTVCdelegate?.updateValues()}
+        dismiss(animated: true) {
+            CoreDataService.shared.saveContext()
+            self.mainTVCdelegate?.updateValues()
+        }
         
     }
     // Обработка нажатия кнопки Increase, увеличивающей текущие значения на значения из TextField ов после чего закрывается EditDisplayTVC и обновляются данные в MainTVC
     @IBAction func increaseAction(_ sender: Any) {
         guard let currentDay = currentDay else { return }
-        guard let metro = Int(metroTFOutlet.text ?? "0") else { return }
-        guard let tat = Int(tatTFOutlet.text ?? "0") else { return }
+        let metro = Int(metroTFOutlet.text ?? "0") ?? 0
+        let tat = Int(tatTFOutlet.text ?? "0") ?? 0
         mainTVCdelegate?.increaseFunction(metro, tat, currentDay)
-        dismiss(animated: true) {self.mainTVCdelegate?.updateValues()}
+        dismiss(animated: true) {
+            CoreDataService.shared.saveContext()
+            self.mainTVCdelegate?.updateValues()
+        }
     }
     
     // Обработка нажатия кнопки Cancel, просто закрывает EditDisplayTVC и возвращает в MainTVC

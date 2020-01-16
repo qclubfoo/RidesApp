@@ -9,7 +9,8 @@
 import UIKit
 
 protocol AddDisplayTVCDelegate: class {
-    func addDataInArray(date: String, metroRides: Int, tatRides: Int)
+    func addDataInArray(data: (date: String, metroRides: Int, tatRides: Int))
+    func updateValues()
 }
 
 class AddDisplayTVC: UITableViewController {
@@ -37,8 +38,8 @@ class AddDisplayTVC: UITableViewController {
     // при нажатии на кнопку добавления значения из аутлетов попадают в переменную в виде кортежа. Вызывается метод добавления данных в массив, хранящий поездки, передавая параметры для заполнения. Контроллер скрывается с помощью dismiss.
     @IBAction func addButton(_ sender: Any) {
         let collectedData = collectDataFromOutlets()
-        mainTVCdelegate?.addDataInArray(date: collectedData.dateText, metroRides: collectedData.metroRides, tatRides: collectedData.tatRides)
-        dismiss(animated: true, completion: nil)
+        mainTVCdelegate?.addDataInArray(data: collectedData)
+        dismiss(animated: true) {self.mainTVCdelegate?.updateValues()}
     }
 
     // по нажатию на кнопку cancel контроллер просто закрывается через dismiss
@@ -47,7 +48,7 @@ class AddDisplayTVC: UITableViewController {
     }
     
     // метод, собирающий данные из TextField ов, и возвращающий их кортежем.
-    func collectDataFromOutlets() -> (dateText: String, metroRides: Int, tatRides: Int) {
+    func collectDataFromOutlets() -> (date: String, metroRides: Int, tatRides: Int) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let dateText = dateFormatter.string(from: datePickerOutlet.date)
